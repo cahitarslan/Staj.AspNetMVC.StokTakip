@@ -1,0 +1,43 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Sepet
+@{
+    ViewBag.Title = "SatinAl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="bg-dark my-5 mx-auto w-75">
+    <div class="card shadow-lg mt-2" style="border:0">
+        <div class="card-header bg-dark"style="color:#e9d362;">
+            <h2 >Satın Alma Sayfası</h2>
+            <h4>Merhaba <label class="text-light">@Model.Kullanicilar.AdiSoyadi</label></h4>
+        </div>
+        <div class="card-body bg-dark text-info">
+            <div class="container">
+                @using (Html.BeginForm("SatinAlPost", "Satislar", FormMethod.Post))
+                {
+                    @Html.HiddenFor(I => I.Id)
+                    <div class="form-group">
+                        Ürün Adı: <span class="text-light">@Html.DisplayFor(I => I.Urunler.UrunAdi, new { @class = "form-control" })</span>
+                    </div>
+                    <div class="form-group">
+                        Barkod No: <span class="text-light">@Html.DisplayFor(I => I.Urunler.BarkodNo, new { @class = "form-control" })</span>
+                    </div>
+                    <div class="form-group">
+                        Birim Fiyatı: <span class="text-light">@Html.DisplayFor(I => I.BirimFiyati, new { @class = "form-control" }) TL</span>
+                    </div>
+                    <div class="form-group">
+                        Miktarı: <span class="text-light">@Html.DisplayFor(I => I.Miktari, new { @class = "form-control" }) @Html.DisplayFor(I => I.Urunler.Birimler.BirimAdi, new { @class = "form-control" })</span>
+                    </div>
+                    <div class="form-group text-center text-primary" style="font-size:25px !important;">
+                        Toplam Tutar: <span>@Html.DisplayFor(I => I.ToplamFiyati, new { @class = "form-control" }) TL</span>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success float-left">Satın Al</button>
+                        <a href="/Sepet/Index" class="btn btn-danger float-right">Vazgeç</a>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

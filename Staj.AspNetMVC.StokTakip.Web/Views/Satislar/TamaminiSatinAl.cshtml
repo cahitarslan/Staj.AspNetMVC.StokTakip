@@ -1,0 +1,59 @@
+﻿@using Staj.AspNetMVC.StokTakip.Web.Models.Entities
+@model List<Sepet>
+@{
+    ViewBag.Title = "TamaminiSatinAl";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    StokTakipDbEntities entity = new StokTakipDbEntities();
+    var userName = User.Identity.Name;
+    var model = entity.Kullanicilar.FirstOrDefault(I => I.KullaniciAdi == userName);
+    var adSoyad = model.AdiSoyadi;
+}
+
+<div class="bg-dark my-5 mx-auto w-75">
+    <div class="card shadow-lg mt-2" style="border:0">
+        <div class="card-header bg-dark" style="color:#e9d362;">
+            <h2>Satın Alma Sayfası</h2>
+            <h4>Merhaba <label class="text-light">@adSoyad</label></h4>
+        </div>
+        <div class="card-body bg-dark text-info">
+
+            @using (Html.BeginForm("TamaminiSatinAlPost", "Satislar", FormMethod.Post, new { @class = "container" }))
+            {
+                foreach (var item in Model)
+                {
+                    <div class="form-group">
+                        Ürün Adı: <span class="text-light">@Html.DisplayFor(I => item.Urunler.UrunAdi)</span>
+                    </div>
+                    <div class="form-group">
+                        Barkod No: <span class="text-light">@Html.DisplayFor(I => item.Urunler.BarkodNo)</span>
+                    </div>
+                    <div class="form-group">
+                        Birim Fiyatı: <span class="text-light">@Html.DisplayFor(I => item.BirimFiyati) TL</span>
+                    </div>
+                    <div class="form-group">
+                        Miktarı: <span class="text-light">@Html.DisplayFor(I => item.Miktari) @Html.DisplayFor(I => item.Urunler.Birimler.BirimAdi)</span>
+                    </div>
+                    <div class="form-group">
+                        <h5 class="text-info">Toplam Fiyatı: <span class="text-light">@Html.DisplayFor(I => item.ToplamFiyati)</span></h5>
+                    </div>
+                    <hr />
+                }
+
+                <div class="form-group text-center" style="font-size:25px !important;">
+                    <span class="text-primary">@ViewBag.Tutar</span>
+                </div>
+                <hr />
+                <div>
+                    <button class="btn btn-success float-left">Satın Al</button>
+                    <a href="/Sepet/Index" class="btn btn-danger float-right">Vazgeç</a>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,35 @@
+﻿@model List<Staj.AspNetMVC.StokTakip.Web.Models.Entities.Markalar>
+@{
+    ViewBag.Title = "Markalar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark my-5 mx-auto w-75">
+    <div class="card shadow-lg mt-2" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">@ViewBag.viewBagKategori Kategorisindeki Markalar</h2>
+        </div>
+        <div class="card-body bg-dark">
+            <table class="table table-bordered table-hover table-dark">
+                <thead class="text-center text-white">
+                    <tr>
+                        <th>Id</th>
+                        <th>Marka Adı</th>
+                        <th>Açıklama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.MarkaAdi</td>
+                            <td>@item.Aciklama</td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Birimler
+@{
+    ViewBag.Title = "BirimSilmeGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="bg-dark w-25 my-5 mx-auto">
+    <div class="card shadow-lg mt-3" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">Birim Sil</h2>
+        </div>
+        <div class="card-body bg-dark text-info">
+
+            @using (Html.BeginForm("BirimSil", "Birimler"))
+            {
+                <div>
+                    @Html.HiddenFor(I => I.Id)
+                    @Html.LabelFor(I => I.BirimAdi):
+                    <span class="text-light">@Html.DisplayFor(I => I.BirimAdi, new { @class = "form-control" })</span>
+                </div>
+                <div>
+                    @Html.LabelFor(I => I.Aciklama):
+                    <span class="text-light">@Html.DisplayFor(I => I.Aciklama, new { @class = "form-control" })</span>
+                </div>
+                <h5 class="text-primary mt-5 mb-4">Kayıt silinsin mi?</h5>
+
+                <div class="form-group">
+                    <button class="btn btn-danger">Sil</button> <a class="btn btn-secondary float-right" href="/Birimler/Index/">İptal</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

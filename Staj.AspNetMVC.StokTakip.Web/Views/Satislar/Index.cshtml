@@ -1,0 +1,51 @@
+﻿@model List<Staj.AspNetMVC.StokTakip.Web.Models.Entities.Satislar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark my-5 mx-auto">
+    <div class="card shadow-lg mt-2" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">Satış Listesi</h2>
+        </div>
+        <div class="card-body bg-dark">
+
+            <table class="table table-bordered table-hover table-dark table-responsive">
+                <thead class="text-center text-white">
+                    <tr>
+                        <th>Id</th>
+                        <th>Kullanıcı Ad Soyad</th>
+                        <th>Ürün Adı</th>
+                        <th>Barkod No</th>
+                        <th>Birim Fiyatı</th>
+                        <th>Miktarı</th>
+                        <th>Birimi</th>
+                        <th>Toplam Fiyatı</th>
+                        <th>KDV</th>
+                        <th>Tarih</th>
+                        <th>Saat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(I => item.Id)</td>
+                            <td>@Html.DisplayFor(I => item.Kullanicilar.AdiSoyadi)</td>
+                            <td>@Html.DisplayFor(I => item.Urunler.UrunAdi)</td>
+                            <td>@Html.DisplayFor(I => item.Urunler.BarkodNo)</td>
+                            <td>@Html.DisplayFor(I => item.BirimFiyati) TL</td>
+                            <td>@Html.DisplayFor(I => item.Miktari)</td>
+                            <td>@Html.DisplayFor(I => item.Urunler.Birimler.BirimAdi)</td>
+                            <td>@Html.DisplayFor(I => item.ToplamFiyati) TL</td>
+                            <td>% @Html.DisplayFor(I => item.KDV)</td>
+                            <td>@item.Tarih.ToString("dd.MM.yyyy")</td>
+                            <td>@item.Saat.ToString("HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,122 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Kullanicilar
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bilgilerini Güncelle</title>
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/LoginScript/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/LoginScript/css/main.css">
+    <!--===============================================================================================-->
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/style-danger.css" rel="stylesheet" />
+</head>
+<body style="background: linear-gradient(to right, #333333, #e9d362);">
+    <div class="bg-dark w-50 mx-auto">
+        <div class="card shadow-lg mt-5" style="border:0">
+            <div class="card-header bg-dark">
+                <h2 style="color: white; text-align:center; margin-top:15px;">Kullanıcı Bilgilerini Güncelle</h2>
+            </div>
+            <div class="card-body bg-dark text-info" style="color: #e9d362;">
+                @using (Html.BeginForm("KullaniciBilgiGuncelle", "Home", FormMethod.Post))
+                {
+                    @Html.HiddenFor(I => I.Id);
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.KullaniciAdi, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.KullaniciAdi, new { @class = "form-control bg-dark text-light" })
+                        @Html.ValidationMessageFor(I => I.KullaniciAdi, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.Sifre, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.Sifre, new { @class = "form-control  bg-dark text-light", type = "password" })
+                        @Html.ValidationMessageFor(I => I.Sifre, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.AdiSoyadi, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.AdiSoyadi, new { @class = "form-control  bg-dark text-light" })
+                        @Html.ValidationMessageFor(I => I.AdiSoyadi, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.DogumTarihi, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.DogumTarihi, new { @class = "form-control  bg-dark text-light", type = "date", @Value = Model.DogumTarihi.ToString("yyyy-MM-dd") })
+                        @Html.ValidationMessageFor(I => I.DogumTarihi, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.Telefon, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.Telefon, new { @class = "form-control  bg-dark text-light" })
+                        @Html.ValidationMessageFor(I => I.Telefon, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.Email, new { @style = "color:#e9d362;" })
+                        @Html.TextBoxFor(I => I.Email, new { @class = "form-control  bg-dark text-light" })
+                        @Html.ValidationMessageFor(I => I.Email, null, new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group my-3">
+                        @Html.LabelFor(I => I.Adres, new { @style = "color:#e9d362;" })
+                        @Html.TextAreaFor(I => I.Adres, new { @class = "form-control  bg-dark text-light" })
+                        @Html.ValidationMessageFor(I => I.Adres, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="container-login100-form-btn mt-4 mb-2">
+                        <div class="wrap-login100-form-btn">
+                            <div class="login100-form-bgbtn"></div>
+                            <button class="login100-form-btn">
+                                Güncelle
+                            </button>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/bootstrap/js/popper.js"></script>
+<script src="~/LoginScript/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/daterangepicker/moment.min.js"></script>
+<script src="~/LoginScript/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+<script src="~/LoginScript/js/main.js"></script>

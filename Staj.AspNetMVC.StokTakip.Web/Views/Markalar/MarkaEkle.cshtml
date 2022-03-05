@@ -1,0 +1,52 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Markalar
+@{
+    ViewBag.Title = "MarkaEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark w-50 my-5 mx-auto">
+    <div class="card shadow-lg mt-3" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">Marka Ekle</h2>
+        </div>
+        <div class="card-body bg-dark text-info">
+            @using (Html.BeginForm("MarkaEkle", "Markalar", FormMethod.Post))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(I => I.Kategoriler.KategoriAdi)
+
+
+                    @Html.DropDownListFor(I => I.KategoriId, (List<SelectListItem>)ViewBag.l, "---Seçiniz---", new { @class = "form-control" })
+
+                    @*@Html.DropDownList("KategoriId", (List<SelectListItem>)ViewBag.l, "---Seçiniz---", new { @class = "form-control" })*@
+
+                    @*@Html.DropDownList("KategoriId", null, "---Seçiniz---", new { @class = "form-control" })*@
+
+                    @Html.ValidationMessageFor(I => I.KategoriId, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.MarkaAdi)
+                    @Html.TextBoxFor(I => I.MarkaAdi, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(I => I.MarkaAdi, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.Aciklama)
+                    @Html.TextBoxFor(I => I.Aciklama, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(I => I.Aciklama, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">Kaydet</button>
+                    <a class="btn btn-danger float-right" href="/Markalar/Index/">İptal</a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section scriptdanger{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

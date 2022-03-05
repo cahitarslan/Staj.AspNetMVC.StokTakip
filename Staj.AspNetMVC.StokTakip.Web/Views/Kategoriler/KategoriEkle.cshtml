@@ -1,0 +1,39 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Kategoriler
+@{
+    ViewBag.Title = "KategoriEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark w-50 my-5 mx-auto">
+    <div class="card shadow-lg mt-3" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">Kategori Ekle</h2>
+        </div>
+        <div class="card-body bg-dark text-info">
+            <form action="/Kategoriler/KategoriEkle/" method="post">
+                <div class="form-group">
+                    @Html.AntiForgeryToken()
+                    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+                    <label>Kategori Adı</label>
+                    <input type="text" name="KategoriAdi" class="form-control" />
+                    @Html.ValidationMessageFor(I => I.KategoriAdi, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <textarea type="text" name="Aciklama" class="form-control"></textarea>
+                    @Html.ValidationMessageFor(I => I.Aciklama, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success">Kaydet</button>
+                    <a class="btn btn-danger float-right" href="/Kategoriler/Index/">İptal</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scriptdanger{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+

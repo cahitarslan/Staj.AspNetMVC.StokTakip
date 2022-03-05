@@ -1,0 +1,162 @@
+﻿@using Staj.AspNetMVC.StokTakip.Web.ActiveFolder
+@using Staj.AspNetMVC.StokTakip.Web.Models.Entities
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title>Stok Takip Otomasyonu</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/style-danger.css" rel="stylesheet">
+
+    <!-- Font-awesome core CSS -->
+    <link href="~/LoginScript/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link rel="icon" type="image/png" href="~/favicon.ico" />
+    <style>
+        .basket {
+            background: #ea222f;
+            color: #fff;
+            font-size: 10px;
+            font-weight: 400;
+            position: absolute;
+            left: 54px;
+            top: 0px;
+            height: 16px;
+            width: 16px;
+            text-align: center;
+            line-height: 16px;
+            border-radius: 8px;
+        }
+
+
+        .dropdown-item:hover {
+            color: #f7f7f7;
+            background-color: #292b2c;
+        }
+
+        .dropdown-item:focus {
+            color: #f7f7f7;
+            background-color: #292b2c;
+        }
+    </style>
+</head>
+
+<body class="bg-light" style="background: linear-gradient(to right, #333333, #e9d362);">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Urunler/Index/"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Stok Takip</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item px-lg-4 @Html.ActivePage("Urunler","Index")">
+                        <a class="nav-link" href="/Urunler/Index">
+                            Ürünler
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link  px-lg-4 @Html.ActivePage("Kategoriler", "Index")" href="/Kategoriler/Index/">Kategoriler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-4 @Html.ActivePage("Markalar", "Index")" href="/Markalar/Index/">Markalar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-lg-4 @Html.ActivePage("Birimler", "Index")" href="/Birimler/Index/">Birimler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link  px-lg-4 @Html.ActivePage("Satislar", "Index")" href="/Satislar/Index/">Satışlar</a>
+                        </li>
+                    }
+
+                   
+
+                    <li class="nav-item">
+                        <div style="position:relative;">
+                            <a class="nav-link px-lg-4  @Html.ActivePage("Sepet", "Index")" href="/Sepet/Index/">
+                                <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+
+                                @{
+                                    StokTakipDbEntities entity = new StokTakipDbEntities();
+                                    var model = entity.Kullanicilar.FirstOrDefault(I => I.KullaniciAdi.Equals(User.Identity.Name));
+                                    if (model != null)
+                                    {
+                                        int count = entity.Sepet.Where(I => I.KullaniciId.Equals(model.Id)).Count();
+                                        if (count > 0)
+                                        {
+                                            <label class="basket">
+                                                @{ Html.RenderAction("ToplamUrunSayisi", "Sepet"); }
+                                            </label>
+                                        }
+                                        if (count == 0)
+                                        {
+                                            <label hidden class="basket">
+                                                @{ Html.RenderAction("ToplamUrunSayisi", "Sepet"); }
+                                            </label>
+                                        }
+                                    }
+                                }
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="dropdown bg-dark">
+                            <a href="#" class="nav-link px-lg-4 dropdown" data-toggle="dropdown">
+                                @User.Identity.Name
+                                <i class="fa fa-caret-down" style="color:#ccc;" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu bg-light">
+                                <a class="dropdown-item" href="/Home/KullaniciBilgiGuncelle/">
+                                    Bilgileri Güncelle
+                                </a>
+                                <a class="dropdown-item" href="/Home/Logout/">
+                                    Çıkış
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" style="margin-top:20px;">
+        <div class="row navbar-static-top">
+            @RenderBody()
+        </div>
+    </div>
+    <footer class="footer text-faded text-center py-xl-5 navbar-fixed-bottom">
+        <div class="container text-dark">
+            <div></div>
+
+            <p class="m-0 table-sm">  <b>Copyright &copy; BEÜ Staj - Stok Takip Otomasyonu </b></p>
+            <p class="m-0 table-sm">Cahit ARSLAN</p>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+
+    @RenderSection("scriptdanger", false)
+    @RenderSection("scripts", false)
+</body>
+
+</html>

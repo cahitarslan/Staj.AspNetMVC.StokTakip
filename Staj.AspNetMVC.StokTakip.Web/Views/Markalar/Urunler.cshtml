@@ -1,0 +1,48 @@
+﻿@model List<Staj.AspNetMVC.StokTakip.Web.Models.Entities.Urunler>
+@{
+    ViewBag.Title = "Urunler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark my-5 mx-auto w-75">
+    <div class="card shadow-lg mt-2" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">@ViewBag.k - @ViewBag.m Grubundaki Ürünler</h2>
+        </div>
+        <div class="card-body bg-dark">
+            <table class="table table-bordered table-hover table-dark">
+                <thead class="text-center text-white">
+                    <tr class="text-center text-white">
+                        <th>Id</th>
+                        <th>Ürün Adı</th>
+                        <th>Barkod No</th>
+                        <th>Alış Fiyatı</th>
+                        <th>Fiyatı</th>
+                        <th>Miktarı</th>
+                        <th>Birim</th>
+                        <th>KDV</th>
+                        <th>Tarih</th>
+                        <th>Açıklama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(I => item.Id) </td>
+                            <td>@Html.DisplayFor(I => item.UrunAdi) </td>
+                            <td>@Html.DisplayFor(I => item.BarkodNo) </td>
+                            <td>@Html.DisplayFor(I => item.AlisFiyati) TL</td>
+                            <td>@Html.DisplayFor(I => item.SatisFiyati) TL</td>
+                            <td>@Html.DisplayFor(I => item.Miktari)</td>
+                            <td>@Html.DisplayFor(I => item.Birimler.BirimAdi) </td>
+                            <td>% @Html.DisplayFor(I => item.KDV) </td>
+                            <td>@Html.DisplayFor(I => item.Tarih) </td>
+                            <td>@Html.DisplayFor(I => item.Aciklama)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Staj.AspNetMVC.StokTakip.Web.Models.Entities.Urunler
+
+@{
+    ViewBag.Title = "UrunSilmeGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bg-dark w-25 my-5 mx-auto">
+    <div class="card shadow-lg mt-3" style="border:0">
+        <div class="card-header bg-dark">
+            <h2 style="color:#e9d362;">Ürün Sil</h2>
+        </div>
+        <div class="card-body bg-dark text-info">
+            @using (Html.BeginForm("UrunSil", "Urunler"))
+            {
+                <div class="form-group">
+                    @Html.HiddenFor(I => I.Id)
+                    @Html.LabelFor(I => I.UrunAdi):
+                    <span class="text-light">@Html.DisplayFor(I => I.UrunAdi, new { @class = "form-control" })</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.Kategoriler.KategoriAdi):
+                    <span class="text-light">@Html.DisplayFor(I => I.Kategoriler.KategoriAdi, new { @class = "form-control" })</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.Markalar.MarkaAdi):
+                    <span class="text-light">@Html.DisplayFor(I => I.Markalar.MarkaAdi, new { @class = "form-control" })</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.Miktari):
+                    <span class="text-light">@Html.DisplayFor(I => I.Miktari, new { @class = "form-control" }) @Html.DisplayFor(I => I.Birimler.BirimAdi, new { @class = "form-control text-light" })</span>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(I => I.SatisFiyati):
+                    <span class="text-light">@Html.DisplayFor(I => I.SatisFiyati, new { @class = "form-control" }) TL</span>
+                </div>
+                <h5 class="text-primary mt-5 mb-4">Kayıt silinsin mi?</h5>
+
+                <div class="form-group">
+                    <button class="btn btn-danger">Sil</button><a class="btn btn-secondary float-right" href="/Urunler/Index/">İptal</a>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
